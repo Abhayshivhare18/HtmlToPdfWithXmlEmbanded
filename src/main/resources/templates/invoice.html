@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--    <meta charset="UTF-8">-->
+    <title>Invoice</title>
+</head>
+<body>
+
+    <div id="xml-data"></div>
+
+    <h1>Invoice</h1>
+    <p>Invoice Number =<span th:text="${invoiceData.invoiceNumber}"></span></p>
+    <p>Customer Name = <span th:text="${invoiceData.customerName}"></span></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>

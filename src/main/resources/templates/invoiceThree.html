@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;display=swap" rel="stylesheet">
+    </link>
+    <style type="text/css">
+        #pro-main {
+            width: 100%;
+        }
+
+        table,
+        tr,
+        td {
+            border: 0px
+        }
+
+        .pro-box {
+            width: 100%;
+            margin-top: 5px;
+            margin-left: 2px;
+            margin-bottom: 0;
+            page-break-inside: auto;
+            border: 0px;
+            border-collapse: collapse;
+            table-layout: fixed;
+            border-spacing: 2px;
+        }
+
+        .pro-box thead {
+            display: table-header-group;
+        }
+
+        .pro-box tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+        }
+
+        .pro-box td {
+            font-size: 12px;
+            word-wrap: break-word !important;
+            border-top: 1px solid #babab9;
+        }
+
+        .pro-box th {
+            border: 0px;
+            padding: 2px;
+            font-weight: bold;
+            font-size: 12px;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <div width="100%" border="0" cellspacing="0" cellpadding="0"
+        style="font-family: 'Lato', sans-serif, Helvetica, sans-serif; text-align: right;">
+        <table>
+            <tr>
+                <th>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td style="text-align:left; font-size:14px; width:49%;">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"
+                                    style="font-family: 'Lato', sans-serif, Helvetica, sans-serif; text-align: left;">
+                                    <tr>
+                                        <td style="margin-left: 2px;">
+                                            <img th:src="${invoiceDetails.companyLogo}" alt="Trukker" /><br />
+                                            <strong style="font-size:14px;">
+                                                <span th:text="${invoiceDetails.companyName}"></span>
+                                            </strong><br />
+                                            <p style="padding:0; margin:0; font-size:14px; line-height:18px;">
+                                                <span th:text="${invoiceDetails.companyAddress}"></span>,<br />
+                                                PHONE: +<span th:text="${invoiceDetails.phoneNumber}"></span><br />
+                                                EMAIL: <span th:text="${invoiceDetails.email}"></span><br />
+                                                CR No.: <span th:text="${invoiceDetails.crNo}"></span><br />
+                                                VAT No.: <span th:text="${invoiceDetails.vatNo}"></span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="text-align:left; font-size:14px; width:100%; padding:1.5% 0.5% 1%;">
+                                <table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+                                    <tr>
+                                        <td style="font-size:14px;">
+                                            <img src="" alt="Trukker" height="180" /><br />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="text-align:right;margin-right: 2px; font-size:14px; width:49%;">
+                                <table width="90%" border="0" cellspacing="0" cellpadding="0" align="right"
+                                    style="font-family: 'Lato', sans-serif, Helvetica, sans-serif; text-align: right;">
+                                    <tr>
+                                        <td style="text-align:right;">
+                                            <img th:src="${invoiceDetails.companyLogoArabic}" alt="Trukker" /><br />
+                                            <strong style="font-size:14px;">تركر العربية المحدودة</strong><br />
+                                            <p style="padding:0; margin:0; font-size:14px; line-height:18px;">
+                                                طريق الأمير تركي ابن عبد العزيز الأول منطقة النخيل 7335<br />
+                                                الرياض , صندوق بريد 12385<br />
+                                                <span th:text="${invoiceDetails.vatNo}">
+                                                    :
+                                                </span>ھاتف<br />
+                                                <span th:text="${invoiceDetails.email}"></span>:البريد الإلكتروني<br />
+                                                <span th:text="${invoiceDetails.crNo}"></span>:.رقم السجل التجاري<br />
+                                                <span th:text="${invoiceDetails.vatNo}"></span>: الرقم الضريبي<br />
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+            <div></div>
+            <tr>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#babab9"
+                        style="background:#babab9;  border-top:1px solid #babab9; border-bottom:1px solid #babab9;">
+                        <tr>
+                            <td
+                                style="text-align:center; font-size:22px; font-weight:bold; padding: 10px; background-color: #babab9;">
+                                Tax Invoice / فاتورة ضريبية
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td style="width:45%; padding:1.5% 0.5%; font-family: 'Lato', sans-serif">
+                                <table width="90%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%; text-align: top; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            Customer ID:
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            <span th:text="${invoiceDetails.customerId}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%;text-align: top; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            Customer Name:
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            <span th:text="${invoiceDetails.customerName}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            Customer Address:
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%;word-wrap:break-word !important; width:51.5%; font-size:14px;word-wrap: break-word; color:#717171; font-weight:bold; text-align:left;">
+                                            <span th:text="${invoiceDetails.customerAddress}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            Customer Contact No:
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            <span th:text="${invoiceDetails.phoneNumber}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            Invoice No:
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            <span th:text="${invoiceDetails.invoiceNo}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            Invoice Date:
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            <span th:text="${invoiceDetails.invoiceDate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            Due Date:
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            <span th:text="${invoiceDetails.dueDate}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            VAT ID:
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:left;">
+                                            <span th:text="${invoiceDetails.customerVatNo}"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width:35%; padding:1.5% 0.5%; font-family: 'Lato', sans-serif">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%;text-align: top; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            <span th:text="${invoiceDetails.customerId}"></span>
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            :هوية الزبون
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <!--                                    <% if(typeof customerNameArabic!=='undefined' || customerNameArabic!==null) {%>-->
+                                        <!--                                    <td-->
+                                        <!--                                            style="padding:8px 0.5%;text-align: top; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">-->
+                                        <!--                                        <%= customerNameArabic%>-->
+                                        <!--                                    </td>-->
+                                        <!--                                    <%}%>-->
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            :اسم الزبون
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <!--                                    <%if(typeof customerAddressArabic!=='undefined' || customerAddressArabic!==null)-->
+                                        <!--                                    {%>-->
+                                        <!--                                    <td-->
+                                        <!--                                            style="padding:8px 0.5%; line-height: 1.4; word-wrap:break-word !important;width:40%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">-->
+                                        <!--                                        <%= customerAddressArabic%>-->
+                                        <!--                                    </td>-->
+                                        <!--                                    <%}%>-->
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            :عنوان العميل
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            <span th:text="${invoiceDetails.phoneNumber}"></span>
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            :رقم جهة اتصال العميل
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            <span th:text="${invoiceDetails.invoiceNo}"></span>
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            :رقم الفاتورة
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            <span th:text="${invoiceDetails.invoiceDate}"></span>
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            :تاريخ الفاتورة
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            <span th:text="${invoiceDetails.dueDate}"></span>
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            :تاريخ الاستحقاق
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="padding:8px 0.5%; width:51.5%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            <span th:text="${invoiceDetails.customerVatNo}"></span>
+                                        </td>
+                                        <td
+                                            style="padding:8px 0.5%; width:46%; font-size:14px; color:#717171; font-weight:bold; text-align:right;">
+                                            :رقم ضریبة القیمة المضافة
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--RUDRA CORRECT ABOVE CODE-->
+    <div class="pro-box" border="0" cellspacing="2" cellpadding="2"
+        style="font-family: 'Lato', sans-serif, Helvetica, sans-serif; text-align: right;">
+        <!--RUDRA  MOVE CODE INTO DIV TAG FROM TABLE TAG CODE-->
+        <table>
+            <thead>
+                <tr>
+                    <th
+                        style="width: 80px;word-wrap:break-word !important; font-weight:bold;color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        المجموع<br />
+                        Total
+                    </th>
+                    <th
+                        style="width: 80px;word-wrap:break-word !important;font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        مبلغ ضریبة<br />
+                        القیمة<br />
+                        المضافة<br />
+                        VAT Amount
+                    </th>
+                    <th
+                        style="width: 75px;word-wrap:break-word !important; font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        نسبة<br />
+                        ضریبة<br />
+                        % القیمة<br />
+                        المضافة<br />
+                        VAT %
+                    </th>
+                    <th
+                        style="width: 90px;word-wrap:break-word !important;font-weight:bold;color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        الوصف<br />
+                        Description
+                    </th>
+                    <th
+                        style="width: 85px;word-wrap:break-word !important;font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        المبلغ<br />
+                        Amount
+                    </th>
+                    <th
+                        style="width: 65px;word-wrap:break-word !important;font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        العملة<br />
+                        Currency
+                    </th>
+                    <th
+                        style="width: 35px;word-wrap:break-word !important;font-weight:bold;color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        الكمیة<br />
+                        Qty
+                    </th>
+                    <th
+                        style="width: 90px;word-wrap:break-word !important;font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        مدینة الوجھة<br />
+                        Destination City
+                    </th>
+                    <th
+                        style="width: 70px;word-wrap:break-word !important;font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        مدینة<br />
+                        التحمیل<br />
+                        Origin City
+                    </th>
+                    <th
+                        style="width: 70px;word-wrap:break-word !important;font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        نوع النقل<br />
+                        Move Type
+                    </th>
+                    <th
+                        style="width: 65px;word-wrap:break-word !important;font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        تاریخ<br />
+                        التحمیل<br />
+                        Move Date
+                    </th>
+                    <th
+                        style="width: 60px;word-wrap:break-word !important;font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        رقم الشاحنة<br />
+                        Truck No.
+                    </th>
+                    <th
+                        style="width: 70px;word-wrap:break-word !important;font-weight:bold;  color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        نوع الشاحنة<br />
+                        Truck Type
+                    </th>
+                    <th
+                        style="width: 80px;word-wrap:break-word !important;font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        الرقم المرجعي للعميل<br />
+                        Customer Ref Number
+                    </th>
+                    <th
+                        style="width: 90px;word-wrap:break-word !important;font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                        رقم اشعار الشحن<br />
+                        Waybill No
+                    </th>
+                </tr>
+            </thead>
+            <!-- RUDRA : PART-1 START -->
+            <tr th:each="invoice : ${invoiceDetails.invoiceList}">
+                <td style="width: 100px; text-align: center; color: #717171;"
+                    th:text="${invoice.standardOrderTotalAmt}"></td>
+                <td style="width: 80px; text-align: center; color: #717171;" th:text="${invoice.vatCh}"></td>
+                <td style="width: 75px; text-align: center; color: #717171;" th:text="${invoice.vatPercentage}"></td>
+                <td style="width: 90px; text-align: center; color: #717171;" th:text="${invoice.description}"></td>
+                <td style="width: 85px; text-align: center; color: #717171;" th:text="${invoice.price}"></td>
+                <td style="width: 65px; text-align: center; color: #717171;" th:text="${invoice.currencyCode}"></td>
+                <td style="width: 35px; text-align: center; color: #717171;" th:text="${invoice.qty}"></td>
+                <td style="width: 90px; text-align: center; color: #717171;"
+                    th:utext="${invoice.destinationCity + '<br/>' + invoice.destinationCityArb}"></td>
+                <td style="width: 70px; text-align: center; color: #717171;"
+                    th:utext="${invoice.originCity+ '<br/>' + invoice.originCityArb}"></td>
+                <td style="width: 70px; text-align: center; color: #717171;" th:text="${invoice.moveType}"></td>
+                <td style="width: 65px; text-align: center; color: #717171;" th:text="${invoice.moveDate}"></td>
+                <td style="width: 60px; text-align: center; color: #717171;" th:text="${invoice.truckRegNo}"></td>
+                <td style="width: 70px; text-align: center; color: #717171;" th:text="${invoice.truckType}"></td>
+                <td style="width: 80px; text-align: center; color: #717171;" th:text="${invoice.custRefNo}"></td>
+                <td style="width: 90px; text-align: center; color: #717171;" th:text="${invoice.orderNumber}"></td>
+            </tr>
+            <!-- RUDRA : PART-1 END -->
+            <!-- RUDRA : PART-2 START -->
+            <tr>
+                <th align="left"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:left; padding:5px 1px;">
+                    <span th:text="${invoiceDetails.standardTotalAmt}"></span>
+                </th>
+                <th align="right"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:right; padding:5px 1px;">
+                    <span th:text="${invoiceDetails.standardTotalVatCh}"></span>
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    &nbsp;
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    &nbsp;
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    <span th:text="${invoiceDetails.summaryTotalAmt}"></span>
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    &nbsp;
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    <span th:text="${invoiceDetails.standardTotalQty}"></span>
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    &nbsp;
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    &nbsp;
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    &nbsp;
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    &nbsp;
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    &nbsp;
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    &nbsp;
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    &nbsp;
+                </th>
+                <th align="center"
+                    style="font-weight:bold; color:#000; border-top:1px solid #babab9;border-bottom:1px solid #babab9; text-align:center; padding:5px 1px;">
+                    : TOTAL - المجموع
+                </th>
+            </tr>
+        </table>
+    </div>
+    <!-- RUDRA : PART-2 END -->
+    <div width="100%" border="0" cellspacing="0" cellpadding="0"
+        style="font-family: 'Lato', sans-serif, Helvetica, sans-serif; text-align: right;">
+        <!-- RUDRA : MOVE CODE INTO DIV FROM TABLE -->
+        <table>
+            <tr>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                        style="font-size:16px; color:#707070;">
+
+                        <tr>
+                            <td style="width:49%;padding:2% 0%">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td colspan="2" align="left" style="padding:5px 0; color: #717171;">
+                                            Please pay: SAR <span th:text="${invoiceDetails.standardTotalAmt}"></span>
+                                            <br />
+                                            <span th:text="${invoiceDetails.standardTotalAmtInEnglishWord}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align="left">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align="left" style="padding:5px 0; color: #717171;">
+                                            Payment By Cheque <strong>
+                                                <span th:text="${invoiceDetails.accountName}"> </span>
+                                            </strong> <br />
+                                            Paying by Bank Transfer
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align="left">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="34%" align="left" style="padding:0px 0; color: #717171;">Bank Name
+                                        </td>
+                                        <td width="66%" align="left" style="padding:0px 0;color: #717171;"><strong>
+                                                <span th:text="${invoiceDetails.bankName}"></span>
+                                            </strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" style="padding:0px 0;color: #717171;">Account Name</td>
+                                        <td align="left" style="padding:0px 0;color: #717171;">
+                                            <span th:text="${invoiceDetails.accountName}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" style="padding:0px 0;color: #717171;">Account Number</td>
+                                        <td align="left" style="padding:0px 0;color: #717171;">
+                                            <span th:text="${invoiceDetails.accountNumber}"></span>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                <td align="left" style="padding:5px 0;color: #717171;">Branch</td>
+                                <td align="left" style="padding:5px 0;color: #717171;"><%= branchName%></td>
+                            </tr> -->
+                                    <tr>
+                                        <td align="left" style="padding:0px 0;color: #717171;">Swift code</td>
+                                        <td align="left" style="padding:0px 0;color: #717171;">
+                                            <span th:text="${invoiceDetails.swiftCode}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" style="padding:0px 0;color: #717171;">IBAN</td>
+                                        <td align="left" style="padding:0px 0;color: #717171;">
+                                            <span th:text="${invoiceDetails.iBAN}"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width:49%;">
+                                <table width="100%" border="0" align="right" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td colspan="2" align="right" style="padding:0px 0;">
+                                            ریال سعودي<span th:text="${invoiceDetails.standardTotalAmt}"></span> یرجى
+                                            الدفع<br />
+                                            <span th:text="${invoiceDetails.standardTotalAmtInArabicWord}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align="right" style="padding:0px 0; color: #717171;">
+                                            الدفع عن طریق الشیكات شركة تركر المحدریال سعودي
+                                            <br /> الدفع عن طريق التحويل المصرفي
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="71%" align="right" style="padding:0px 0;color: #717171;">بنك الریاض
+                                        </td>
+                                        <td width="29%" align="right" style="padding:0px 0;color: #717171;">اسم البنك
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right" style="padding:0px 0;color: #717171;">شركة تركر العربیة
+                                            المحدودة
+                                        </td>
+                                        <td align="right" style="padding:0px 0;color: #717171;">أسم الحساب</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right" style="padding:0px 0;color: #717171;">
+                                            <span th:text="${invoiceDetails.accountNumber}"></span>
+                                        </td>
+                                        <td align="right" style="padding:0px 0;color: #717171;">رقم الحساب</td>
+                                    </tr>
+                                    <!-- <tr>
+                                <td align="right" style="padding:5px 0;color: #717171;">فرع شاطئ القرم</td>
+                                <td align="right" style="padding:5px 0;color: #717171;">رقم الحساب</td>
+                            </tr> -->
+                                    <tr>
+                                        <td align="right" style="padding:0px 0;color: #717171;">
+                                            <span th:text="${invoiceDetails.swiftCode}"></span>
+                                        </td>
+                                        <td align="right" style="padding:0px 0;color: #717171;">سویفت كود</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right" style="padding:0px 0;color: #717171;">
+                                            <span th:text="${invoiceDetails.iBAN}"></span>
+                                        </td>
+                                        <td align="right" style="padding:0px 0;color: #717171;">IBAN</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td align="left" valign="top" style="width:49%; font-family: 'Lato', sans-serif;">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="left" style="font-size:16px; color: #717171;">
+                                            <strong>Terms:</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            <ol style="padding:0; margin:0 3%; font-size:16px; color: #717171;">
+                                                <li style="padding:5px 0; margin:0; line-height:18px;">Trukker is not
+                                                    responsible for any cash settlement without an official receipt
+                                                </li>
+                                                <li style="padding:5px 0; margin:0; line-height:18px;color: #717171;">
+                                                    Any discrepancy should be notified to us in writing within 3 days
+                                                    after
+                                                    received after which invoice will be considered as accepted
+                                                </li>
+                                            </ol>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td align="right" valign="top" style="width:49%;font-family: 'Lato', sans-serif;">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="right" style="font-size:16px; color: #717171;"><strong>:
+                                                شروط</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">
+                                            <ol style="padding:0; margin:0 3%; font-size:16px; color: #717171;"
+                                                dir="rtl">
+                                                <li style="padding:5px 0; margin:0; line-height:18px;">لا تقبل تركرأي
+                                                    تسویة
+                                                    نقدیة بدون إیصال رسمي صادر منھا
+                                                </li>
+                                                <li style="padding:5px 0; margin:0; line-height:18px;">
+                                                    يجب إخطارنا بأي خطأ في بيانات الفاتورة في غضون 3 أيام بعد الاستلام
+                                                    وبعد
+                                                    ذلك
+                                                    سيتم اعتبار الفاتورة مقبولة
+                                                </li>
+                                            </ol>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td align="left" valign="top"
+                                style="width:49%;font-family: 'Lato', sans-serif;padding:2% 0%">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="left" style="font-size:16px; color: #717171;"><strong>Note</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" style="font-size:16px; color: #717171;">This is a computer
+                                            generated
+                                            document and does not require signature and stamp
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td align="right" valign="top" style="width:49%;font-family: 'Lato', sans-serif;">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="right" style="font-size:16px; color: #717171;">
+                                            <strong>ملاحظة</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right" style="font-size:16px; color: #717171;">ًًھذا مستند تم إنشاؤه
+                                            بواسطة
+                                            الكمبیوتر ولا یتطلب توقیعا وختماًً
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- RUDRA : PART-3 START-->
+    <div>
+        <footer th:style="'margin-top: 20px; font-size: 5px;'">
+            <div th:if="${0 > 0}">
+                <p>Revised Invoice</p>
+            </div>
+        </footer>
+    </div>
+
+    <!--<div th:if="${invoiceDetails.invoiceListSummary != null and invoiceDetails.invoiceListSummary.size() != 0}" style="page-break-before: always">-->
+    <!--    <div th:replace="${invoiceDetails.customerVatNo}"></div>-->
+    <!--</div>-->
+
+    <div style="page-break-after: always">&nbsp;</div>
+
+    <!--<div th:if="${files != null and files.size() > 0}">-->
+    <!--    <div th:each="file : ${files}">-->
+    <!--        <div>-->
+    <!--            <img th:src="${file}" style="width: 95%; padding-top: 40px; padding-left: 20px;" />-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
+    <!-- RUDRA : PART-3 END -->
+</body>
+
+</html>
